@@ -1,0 +1,3 @@
+Run it from crontab::
+
+	0 * * * * /root/mem_monitor/mem_monitor.py <warn ratio, eg 0.75> <email 1> <email 2> ...

@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
+import sys
 import re
 import smtplib
 from email.mime.text import MIMEText
 from socket import gethostname
 
-warn_ratio = 0.90
-email_to = ["per@stunning.se", "johan@stunning.se"]
-email_from = "root@stunning-apps.com"
+warn_ratio = float(sys.argv[1])
+email_to = sys.argv[2:]
 
 once_filename = "/tmp/mem_monitor-once.json"
 
@@ -51,7 +51,7 @@ def email(message):
 		message,
 		"",
 		"Host: " + gethostname()]))
-	
+	email_from = "root@" + gethostname()
 	msg['Subject'] = "STUNNIMP: " + message
 	msg['From'] = email_from
 	msg['To'] = ', '.join(email_to)
